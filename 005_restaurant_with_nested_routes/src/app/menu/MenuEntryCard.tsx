@@ -7,10 +7,11 @@ import { useEffect, useRef } from "react"
 export type MenuEntryProps = {
     entry: MenuEntry
     fadeInDelay: number
+    large?: boolean
 }
 
 export default function MenuEntryCard(props: MenuEntryProps) {
-    const { entry } = props
+    const { entry, large = false } = props
 
     function formatPrice(n: Number) {
         return n.toFixed(2)
@@ -27,14 +28,15 @@ export default function MenuEntryCard(props: MenuEntryProps) {
         }, props.fadeInDelay)
     }, [ props.fadeInDelay ])
 
+
     return (
-        <div ref={self} className={classes.menuentry} style={{ width: "240px" }}>
+        <div ref={self} className={classes.menuentry} style={{ width: large ? "480px" : "240px" }}>
             <div className={classes["menuentry-title"]}>{entry.label}</div>
             <div className={classes["menuentry-image"]}>
                 <Image src={`/dishes/${entry.image}`}
                     width={400}
                     height={600}
-                    style={{ alignSelf: "start", height: "200px", width: "auto" }}
+                    style={{ alignSelf: "start", height: large ? "400px" : "200px", width: "auto" }}
                     alt={entry.label}></Image>
             </div>
             <div className={classes["menuentry-description"]}>{entry.description}</div>

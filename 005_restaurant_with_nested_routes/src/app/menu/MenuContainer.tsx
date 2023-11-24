@@ -3,6 +3,7 @@
 import { MenuEntry } from "@/data/menuentry"
 import { PropsWithChildren, ReactNode } from "react"
 import MenuEntryCard from "./MenuEntryCard"
+import Link from "next/link"
 
 
 
@@ -21,11 +22,12 @@ export default function MenuContainer(props: MenuContainerProps2) {
     return (
         <div className="row-container wrap gap center">
             {props.entries.map((entry, index) => (
-                        <MenuEntryCard
-                            key={entry.key}
-                            fadeInDelay={50 + index * 100}
-                            entry={entry}
-                        ></MenuEntryCard>
+                <Link key={entry.key} href={`/menu/${entry.key}`}>
+                    <MenuEntryCard
+                        fadeInDelay={50 + index * 100}
+                        entry={entry}
+                    ></MenuEntryCard>
+                </Link>
                     ))}
         </div>
     )

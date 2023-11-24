@@ -7,7 +7,7 @@ export type PageContainerProps = {
 export function PageContainer(props: PageContainerProps) {
 
     return (
-        <div className="padding">
+        <div className="column-container padding">
             {props.children}
         </div>
     )
