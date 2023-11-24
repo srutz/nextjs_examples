@@ -16,7 +16,7 @@ type RootLayoutProps = {
 
 export default function RootLayout(props: RootLayoutProps) {
     return (
-        <html lang="en">
+        <html lang="de">
             <body >
                 <div className="column-container grow height1">
                     <nav className="row-container gap padding white">

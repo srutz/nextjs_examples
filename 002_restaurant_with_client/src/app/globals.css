@@ -21,6 +21,13 @@ h1 {
     letter-spacing: -1px;
 }
 
+p {
+    hyphens: auto;
+}
+
+div {
+    hyphens: auto;
+}
 a {
     color: rgb(var(--foreground-rgb));
     text-decoration: none;
