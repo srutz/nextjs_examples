@@ -41,6 +41,7 @@ export default function MenuEntryCard(props: MenuEntryProps) {
             <div className={classes["menuentry-title"]}>{entry.label}</div>
             <div className={classes["menuentry-image"]}>
                 <Image src={`/dishes/${entry.image}`}
+                    priority
                     width={400}
                     height={600}
                     style={{ alignSelf: "start", height: large ? "400px" : "200px", width: "auto" }}

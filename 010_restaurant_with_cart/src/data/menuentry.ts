@@ -1,4 +1,6 @@
 
+/* something you can order */
+
 export type MenuEntry = {
     key: string
     label: string

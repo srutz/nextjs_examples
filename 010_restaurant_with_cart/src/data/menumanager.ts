@@ -1,5 +1,8 @@
 import { MenuEntry } from "./menuentry"
 
+/* a class that contains everything you 
+ * can possibly order */
+
 export class MenuManager {
     private static instance = new MenuManager()
 

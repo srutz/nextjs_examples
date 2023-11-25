@@ -7,8 +7,9 @@ import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 export type CartContextType = {
     content: Cart
-    addToCart: (entry: MenuEntry, n: number) => void
+    addToCart: (entry: MenuEntry, n: number, absoluteValue?: boolean) => void
     getTotalItemCount: () => number
+    getTotal:() => number
 }
 
 
@@ -21,10 +22,12 @@ export function useCart() {
 export function CartProvider(props: { children?: ReactNode }) {
     const c: Cart = {
         items: [
+            /*
             {
                 count: 5,
                 menuEntry: MenuManager.getInstance().entries[2]
             }
+            */
         ]
     }
     const [cart, setCart] = useState(c)
@@ -33,7 +36,7 @@ export function CartProvider(props: { children?: ReactNode }) {
 
         content: cart,
 
-        addToCart: (entry: MenuEntry, n: number) => {
+        addToCart: (entry, n, absoluteValue?) => {
             const newCart: Cart = {
                 items: [...cart.items]
             }
@@ -45,17 +48,23 @@ export function CartProvider(props: { children?: ReactNode }) {
                 }
                 newCart.items.push(item)
             }
-            item.count += n
-            newCart.items = newCart.items.filter(i => i.count > 0)
-            console.table(newCart.items)
+            if (absoluteValue) {
+                item.count = n
+            } else {
+                item.count += Math.max(0, n)
+            }
+            //newCart.items = newCart.items.filter(i => i.count > 0)
+            //console.table(newCart.items)
             setCart(newCart)
         },
         
         getTotalItemCount: () => {
             return cart.items.reduce((s, item) => s += item.count, 0)
+        },
+
+        getTotal: () => {
+            return cart.items.reduce((s, item) => s += item.count * item.menuEntry.price, 0)
         }
-    
-    
     }
 
     return (

@@ -17,3 +17,9 @@
 .carttable td:nth-child(1) {
     width: 300px;
 }
+
+.carttable .sumrow {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    height: 60px;
+}
