@@ -20,10 +20,13 @@ export default function Page() {
                     <table className={classes.carttable}>
 
                         <thead>
-                            <th><td>Bestellung</td></th>
-                            <th><td>Anzahl</td></th>
-                            <th><td>Preis</td></th>
+                            <tr>
+                                <th>Bestellung</th>
+                                <th>Anzahl</th>
+                                <th>Preis</th>
+                            </tr>
                         </thead>
+                        <tbody>
                     {cart.content.items.map((item, index) => (
                         <tr key={index}>
                             <td>
@@ -37,6 +40,7 @@ export default function Page() {
                             </td>
                         </tr>
                     ))}
+                    </tbody>
                     </table>
                 </div>
 
