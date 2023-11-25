@@ -5,9 +5,18 @@ import { MenuManager } from '@/data/menumanager';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 
+export type CartContextType = {
+    content: Cart
+    addToCart: (entry: MenuEntry, n: number) => void
+    getTotalItemCount: () => number
+}
 
-const CartContext = createContext({} as any)
 
+export const CartContext = createContext<CartContextType>({} as any)
+
+export function useCart() {
+    return useContext(CartContext)
+}
 
 export function CartProvider(props: { children?: ReactNode }) {
     const c: Cart = {
@@ -18,31 +27,41 @@ export function CartProvider(props: { children?: ReactNode }) {
             }
         ]
     }
-    const [cart, setCart] = useState(c);
+    const [cart, setCart] = useState(c)
 
-    const addToCart = (entry: MenuEntry, n: number) => {
-        const newCart: Cart = {
-            items: [...cart.items]
-        }
-        let item = newCart.items.find(i => i.menuEntry.key == entry.key)
-        if (!item) {
-            item = {
-                count: 0,
-                menuEntry: entry
+    const context: CartContextType = {
+
+        content: cart,
+
+        addToCart: (entry: MenuEntry, n: number) => {
+            const newCart: Cart = {
+                items: [...cart.items]
             }
+            let item = newCart.items.find(i => i.menuEntry.key == entry.key)
+            if (!item) {
+                item = {
+                    count: 0,
+                    menuEntry: entry
+                }
+                newCart.items.push(item)
+            }
+            item.count += n
+            newCart.items = newCart.items.filter(i => i.count > 0)
+            console.table(newCart.items)
+            setCart(newCart)
+        },
+        
+        getTotalItemCount: () => {
+            return cart.items.reduce((s, item) => s += item.count, 0)
         }
-        item.count += n
-        newCart.items = newCart.items.filter(i => i.count > 0)
-        setCart(newCart)
+    
+    
     }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart }}>
+        <CartContext.Provider value={context}>
             {props.children}
         </CartContext.Provider>
     )
 }
 
-export function useCart() {
-    return useContext(CartContext)
-}

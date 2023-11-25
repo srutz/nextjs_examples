@@ -1,0 +1,19 @@
+
+.carttable {
+    align-self: start;
+    border-collapse: separate;
+    border-collapse: collapse;
+}
+
+.carttable th {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.carttable td {
+    width: 80px;
+    padding: 8px;
+}
+
+.carttable td:nth-child(1) {
+    width: 300px;
+}

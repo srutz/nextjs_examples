@@ -5,6 +5,7 @@ import { PageContainer } from "@/components/PageContainer";
 import { MenuManager } from "@/data/menumanager"
 import { useParams } from "next/navigation"
 import MenuEntryCard from "../MenuEntryCard"
+import Link from "next/link"
 
 export default function Page() {
     const { key } = useParams()
@@ -14,7 +15,10 @@ export default function Page() {
     return (
         entry && (
         <PageContainer>
-            <MenuEntryCard large entry={entry} fadeInDelay={50}></MenuEntryCard>
+            <div className="column-container gap aligncenter">                
+                <MenuEntryCard large entry={entry} fadeInDelay={50}></MenuEntryCard>
+                <Link href="/menu">Zurück</Link>
+            </div>
         </PageContainer>
         )
     )

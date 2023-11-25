@@ -2,7 +2,7 @@ import { MenuEntry } from "@/data/menuentry"
 import Image from "next/image"
 
 import classes from "./MenuEntry.module.css"
-import { useEffect, useRef } from "react"
+import { MouseEvent, useEffect, useRef } from "react"
 import { useCart } from "@/components/CartProvider"
 
 export type MenuEntryProps = {
@@ -30,10 +30,10 @@ export default function MenuEntryCard(props: MenuEntryProps) {
     }, [ props.fadeInDelay ])
 
     const cart = useCart()
-    console.dir(cart)
-    const onClickAdd = (() => {
-        console.log("click")
-    })
+    const onClickAdd = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        cart.addToCart(entry, 1)
+        e.preventDefault()
+    }
 
 
     return (
@@ -48,7 +48,7 @@ export default function MenuEntryCard(props: MenuEntryProps) {
             </div>
             <div className={classes["menuentry-description"]}>{entry.description}</div>
             <div className={classes["menuentry-price"]}>Preis: {formatPrice(entry.price)} €
-                <button onClick={onClickAdd}>Add to cart</button></div>
+                <button onClick={(e) => onClickAdd(e)}>Add to cart</button></div>
         </div>
     )
 }

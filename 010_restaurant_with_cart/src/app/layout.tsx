@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Fira_Sans, Roboto } from "next/font/google";
+import { Inter, Fira_Sans } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { CartProvider } from "@/components/CartProvider";
+import CartIcon from "@/components/CartIcon"
 
 const inter = Inter({
     subsets: ['latin'],
@@ -29,10 +30,12 @@ export default function RootLayout(props: RootLayoutProps) {
             <body >          
                 <CartProvider>
                     <div className="column-container grow height1">
-                        <nav className="row-container gap padding white">
+                        <nav className="row-container gap padding centeritems white">
                             <Link href="/">Hauptseite</Link>
                             <Link href="/menu">Menü</Link>
                             <Link href="/imprint">Impressum</Link>
+                            <div className="grow"></div>
+                            <CartIcon></CartIcon>
                         </nav>
                         <div>{props.children}</div>
                     </div>
