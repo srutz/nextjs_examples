@@ -1,0 +1,31 @@
+
+
+
+.countpanel {
+    display: flex;
+    background: white;
+    border: 1px solid var(--color-border);
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    padding: 4px 1px;
+    height: 24px;
+}
+
+.section-button {
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-edit {
+    overflow: hidden;
+}
+
+.section-edit:focus-visible {
+    outline: none;
+}
+
