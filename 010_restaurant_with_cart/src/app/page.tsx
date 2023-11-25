@@ -9,7 +9,7 @@ export default function Home() {
             <div className="column-container">
                 <h1>Willkommen im Restaurant Nice-Place</h1>
                 <Link href="/menu">
-                    <Image src="/restaurant.jpg" alt="Our restaurant" width={720} height={480}></Image>
+                    <Image src="/restaurant.jpg" priority alt="Our restaurant" width={720} height={480}></Image>
                 </Link>
             </div>
         </PageContainer>

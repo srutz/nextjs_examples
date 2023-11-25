@@ -51,7 +51,10 @@ export function CartProvider(props: { children?: ReactNode }) {
             if (absoluteValue) {
                 item.count = n
             } else {
-                item.count += Math.max(0, n)
+                item.count += n
+                if (item.count < 0) {
+                    item.count = 0
+                }
             }
             //newCart.items = newCart.items.filter(i => i.count > 0)
             //console.table(newCart.items)

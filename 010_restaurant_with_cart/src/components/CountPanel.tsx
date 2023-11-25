@@ -38,6 +38,7 @@ export function CountPanel(props: CountPanelProps) {
         const target = e.currentTarget
         setTimeout(() => {
             const v = Number.parseInt(target.innerText)
+            setValue(v)
             cart.addToCart(props.entry, v, true) // update cart
         }, 1)
     }
