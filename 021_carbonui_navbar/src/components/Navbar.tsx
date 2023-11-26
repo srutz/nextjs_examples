@@ -1,5 +1,7 @@
 "use client";
 
+import { Switcher, Notification, UserAvatar } from "@carbon/react/icons";
+
 import {
     Header,
     HeaderContainer,
@@ -13,9 +15,14 @@ import {
     SideNav,
     SideNavItems,
     SkipToContent,
-    Switcher,
+    Theme
 } from "@carbon/react";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import CartIcon from "./CartIcon";
+import { ShowContainer } from "./ShowContainer";
+import { Spacer } from "./Spacer"
 
 /*
  adapted to typescript and next.js from
@@ -25,42 +32,118 @@ https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-2/sr
 */
 
 export function Navbar() {
+    const router = useRouter();
+
     return (
+    <Theme theme="g100">
         <HeaderContainer
             render={({ isSideNavExpanded, onClickSideNavExpand }) => (
-                <Header aria-label="Header">
+                <Header aria-label="Menü öffnen">
                     <SkipToContent />
                     <HeaderMenuButton
-                        aria-label="Expand menu"
+                        aria-label="Open menu"
                         onClick={onClickSideNavExpand}
                         isActive={isSideNavExpanded}
                     />
-                    <HeaderName as={Link} href="/" prefix="IBM">
-                        Restaurant
+                    <HeaderName as={Link} href="/" prefix="A NICE PLACE">
+                        A nice place
                     </HeaderName>
-                    <HeaderNavigation aria-label="Navigation">
-                        <HeaderMenuItem as={Link} href="/menu">
+                    <HeaderNavigation aria-label="Startseite">
+                        <HeaderMenuItem
+                            onClick={() => {
+                                if (isSideNavExpanded) {
+                                    onClickSideNavExpand()
+                                }
+                                router.push("/")
+                            }}
+                        >
+                            Startseite
+                        </HeaderMenuItem>
+                        <HeaderMenuItem
+                            onClick={() => {
+                                if (isSideNavExpanded) {
+                                    onClickSideNavExpand()
+                                }
+                                router.push("/menu")
+                            }}
+                        >
                             Menü
+                        </HeaderMenuItem>
+                        <HeaderMenuItem
+                            onClick={() => {
+                                if (isSideNavExpanded) {
+                                    onClickSideNavExpand()
+                                }
+                                router.push("/imprint")
+                            }}
+                        >
+                            Impressum
                         </HeaderMenuItem>
                     </HeaderNavigation>
                     <SideNav
-          aria-label="Side navigation"
-          expanded={isSideNavExpanded}
-          isPersistent={false}>
-          <SideNavItems>
-            <HeaderSideNavItems>
-              <HeaderMenuItem as={Link} href="/repos">
-                Repositories
-              </HeaderMenuItem>
-            </HeaderSideNavItems>
-          </SideNavItems>
-        </SideNav>
-        <HeaderGlobalBar>
-          <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
-            <Switcher size={20} >aa</Switcher>
-          </HeaderGlobalAction>
-        </HeaderGlobalBar>                </Header>
+                        aria-label="Side navigation"
+                        expanded={isSideNavExpanded}
+                        isPersistent={false}
+                    >
+                        <SideNavItems>
+                            <HeaderSideNavItems>
+                                <HeaderMenuItem
+                                    onClick={() => {
+                                        if (isSideNavExpanded) {
+                                            onClickSideNavExpand()
+                                        }
+                                        router.push("/menu")
+                                    }}
+                                >
+                                    Menü
+                                </HeaderMenuItem>
+                                <HeaderMenuItem
+                                    onClick={() => {
+                                        if (isSideNavExpanded) {
+                                            onClickSideNavExpand()
+                                        }
+                                        router.push("/imprint")
+                                    }}
+                                >
+                                    Impressum
+                                </HeaderMenuItem>
+                            </HeaderSideNavItems>
+                        </SideNavItems>
+                    </SideNav>
+                    <HeaderGlobalBar>
+                        <HeaderGlobalAction aria-label="Warenkorb" onClick={() => {
+                                if (isSideNavExpanded) {
+                                    onClickSideNavExpand()
+                                }
+                                router.push("/cart")
+                            }}>
+                            <CartIcon></CartIcon>
+                        </HeaderGlobalAction>
+                        <Spacer width={16}/>
+
+                        <ShowContainer shown={false}>
+                            <HeaderGlobalAction
+                                aria-label="Notifications"
+                                tooltipAlignment="center"
+                            >
+                                <Notification size={20} />
+                            </HeaderGlobalAction>
+                            <HeaderGlobalAction
+                                aria-label="User Avatar"
+                                tooltipAlignment="center"
+                            >
+                                <UserAvatar size={20} />
+                            </HeaderGlobalAction>
+                            <HeaderGlobalAction
+                                aria-label="App Switcher"
+                                tooltipAlignment="end"
+                            >
+                                <Switcher size={20} />
+                            </HeaderGlobalAction>
+                        </ShowContainer>
+                    </HeaderGlobalBar>
+                </Header>
             )}
-        ></HeaderContainer>
+        /></Theme>
     );
 }

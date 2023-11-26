@@ -1,12 +1,13 @@
 
 .carttable {
     align-self: start;
-    border-collapse: separate;
     border-collapse: collapse;
+    width: 500px;
 }
 
 .carttable th {
     border-bottom: 1px solid var(--color-border);
+    height: 40px;
 }
 
 .carttable td {

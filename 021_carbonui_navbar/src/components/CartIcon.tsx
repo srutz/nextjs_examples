@@ -18,7 +18,7 @@ export default function CartIcon() {
 
     return (
         <div className={classes.carticon} onClick={onClick}>
-            <FaCartArrowDown size={30}/>
+            <FaCartArrowDown color="var(--color-foreground)" size={24}/>
             <div className={classes["carticon-overlay"]}>{cart.getTotalItemCount()}</div>
         </div>
     )

@@ -41,7 +41,7 @@ export default function RootLayout(props: RootLayoutProps) {
                             <CartIcon></CartIcon>
                         </nav>
                         */}
-                        <div>{props.children}</div>
+                        <div className="main-content">{props.children}</div>
                     </div>
                 </CartProvider>      
             </body>
