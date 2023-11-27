@@ -1,0 +1,38 @@
+.product {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 1rem;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+
+    cursor: pointer;
+    align-self: center;
+
+    width: 440px;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.product-image {
+    overflow: hidden;
+}
+
+.product-description {
+    font-size: 0.8rem;
+    height: 2.5rem;
+}
+
+.product-price {
+    font-weight: 900;
+    align-self: end;
+    display: flex;
+    gap: 1.5rem;
+}
