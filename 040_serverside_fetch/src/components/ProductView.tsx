@@ -1,5 +1,5 @@
-import { Product } from "@/app/page"
 
+import { Product } from "./Product"
 import classes from "./ProductView.module.css"
 import Image from "next/image"
 
