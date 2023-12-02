@@ -1,9 +1,8 @@
 "use client"
 
 import { SimpleQueryResult } from "@/components/PoolManager"
-import { FieldDef } from "pg"
 import { changeSalary, getEmployees } from "./dbactions"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useTransition } from "react"
 
 
 export type ResultsViewProps = {
@@ -14,28 +13,33 @@ export function ResultsView(props: ResultsViewProps) {
 
     const { initialResult = { rows:[], fields:[] } } = props
 
-    const [ result, setResult ] = useState(initialResult)
+    const [result, setResult] = useState(initialResult)
+    const [loading, setLoading] = useState(false)  // or use useTransition
 
-    const onClickRow = async (row: any) => {
-        await changeSalary(row.id, 5)
+    const refreshData = async () => {
+        //setLoading(true)
         const t0 = new Date().getTime()
         const newResult = await getEmployees()
         const dt = new Date().getTime() - t0;
         console.log("client data fetch tool: " + dt + " ms")
-    
         setResult(newResult)
+        //setLoading(false)
+    }
+
+    const onClickRow = async (row: any) => {
+        console.log("browser log")
+        await changeSalary(row.id, 5)
+        refreshData()
     }
 
     useEffect(() => {
-        const w = async() => {
-            const newResult = await getEmployees()
-            setResult(newResult)
-        }
-        w()
+        refreshData()
     }, [])
 
     return (
         <div className="column-container">
+            {loading ? (<div>loading data...</div>)
+            : (
         <table width="400">
             <tbody>
             {result.rows.map((row, y) => (
@@ -50,6 +54,7 @@ export function ResultsView(props: ResultsViewProps) {
             ))}
             </tbody>
         </table>
+            )}
     </div>
 
     )
