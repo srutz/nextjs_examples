@@ -34,7 +34,9 @@ export function Product(props: ProductProps) {
     return (
         <motion.div
                 initial={{ opacity: 0, scale: 0, y: 150 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0,
+                    transition: {}
+                }}
                 viewport={{ once: !true }}>
             <div className={classes.productpanel}>
                 <div className={classes.productimage}>
