@@ -28,10 +28,27 @@
     font-weight: 700;
     font-size: 1.25rem;
     white-space: nowrap;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .productdescription {
     color: #444444;
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.productstock {
+    color: #000000;
+    font-size: 14px;
+}
+
+.productprice {
+    color: #600000;
+    background: lightsalmon;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
 }
