@@ -3,6 +3,7 @@
 export type TableViewColumn<T> = {
     key: keyof T & string
     title: string
+    numeric?: boolean
 }
 
 export type TableViewProps<T> = {
@@ -27,7 +28,7 @@ export function TableView<T>(props: TableViewProps<T>) {
             {data.map((row, rowindex) => (
                 <tr key={rowindex}>
                     {columns.map(column => (
-                        <td key={column.key}>{row[column.key] as unknown as any}</td>
+                        <td key={column.key} className={column.numeric?"td-numeric":""}>{row[column.key] as unknown as any}</td>
                     ))}
                 </tr>
             ))}
