@@ -1,0 +1,37 @@
+
+.productpanel {
+    background-color: white;
+    border-radius: 12px;
+    width: 280px;
+    height: 300px;
+    border: 1px solid #dddddd;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.productbody {
+    border-top: 1px solid #dddddd;
+    height: 140px;
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.productimage {
+    height: 160px;
+    overflow: hidden;
+ }
+
+.producttitle {
+    font-weight: 700;
+    font-size: 1.25rem;
+    white-space: nowrap;
+
+}
+
+.productdescription {
+    color: #444444;
+    font-size: 14px;
+}

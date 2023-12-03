@@ -1,6 +1,7 @@
 import { PageContainer } from "@/components/PageContainer"
 import Link from "next/link"
 import {Product} from "@/components/Product";
+import {Spacer} from "@/components/Spacer";
 
 
 
@@ -16,13 +17,14 @@ export default async function Page() {
         <PageContainer>
             <div className="column-container centeritems">
                 <h1 >Unsere Produkte</h1>
-                {json.products.map((product) => (
-                    <Link key={product.id} href={`./products/${product.id}`}>
-                        <div className="row-container gap center">
-                            {product.title}
-                        </div>
-                    </Link>
-                ))}
+                <div className="row-container wrap gap center">
+                    {json.products.map((product) => (
+                        <Link key={product.id} href={`./products/${product.id}`}>
+                            <Product product={product}></Product>
+                        </Link>
+                    ))}
+                </div>
+                <Spacer height={48}></Spacer>
             </div>
         </PageContainer>
     )
