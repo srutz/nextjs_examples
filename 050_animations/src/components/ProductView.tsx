@@ -1,30 +1,18 @@
 
 "use client"
 
-import classes from "./Product.module.css"
+import classes from "./ProductView.module.css"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import {Spacer} from "@/components/Spacer";
+import { Product } from "./ProductType";
 
-export type Product = {
-    id: number
-    title: string
-    description: string
-    price: number
-    discountPercentage: number
-    rating: number
-    stock: number
-    brand: string
-    category: string
-    thumbnail: string
-    images: any[]
-}
 
-export type ProductProps = {
+export type ProductViewProps = {
     product: Product
 }
 
-export function Product(props: ProductProps) {
+export function ProductView(props: ProductViewProps) {
     const { product } = props
 
     function formatPrice(n: Number) {

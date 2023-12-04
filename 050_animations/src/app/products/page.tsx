@@ -1,7 +1,8 @@
 import { PageContainer } from "@/components/PageContainer"
 import Link from "next/link"
-import {Product} from "@/components/Product";
+import {ProductView} from "@/components/ProductView";
 import {Spacer} from "@/components/Spacer";
+import { Product } from "@/components/ProductType";
 
 
 
@@ -20,7 +21,7 @@ export default async function Page() {
                 <div className="row-container wrap gap center">
                     {json.products.map((product) => (
                         <Link key={product.id} href={`./products/${product.id}`}>
-                            <Product product={product}></Product>
+                            <ProductView product={product}></ProductView>
                         </Link>
                     ))}
                 </div>

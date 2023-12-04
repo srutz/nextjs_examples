@@ -25,7 +25,7 @@ type RootLayoutProps = {
 
 export default function RootLayout(props: RootLayoutProps) {
     return (
-        <html lang="de" className={fira.className}>
+        <html lang="de" className={inter.className}>
             <body >
                 <div className="column-container grow height1">
                     <Navbar></Navbar>
