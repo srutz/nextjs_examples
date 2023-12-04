@@ -22,6 +22,7 @@
 .productimage {
     height: 160px;
     overflow: hidden;
+    position: relative;
  }
 
 .producttitle {

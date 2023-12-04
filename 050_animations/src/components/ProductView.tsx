@@ -28,8 +28,7 @@ export function ProductView(props: ProductViewProps) {
                 viewport={{ once: !true }}>
             <div className={classes.productpanel}>
                 <div className={classes.productimage}>
-                    <Image src={product.thumbnail} alt={product.title} width="280" height="1"
-                           style={{ width: "280px", height: "auto", minHeight: "140px" }}/>
+                    <Image src={product.thumbnail} alt={product.title} layout="fill" objectFit="contain" />
                 </div>
                 <div className={classes.productbody}>
                     <div className={classes.producttitle} title={product.title}>{product.title}</div>
