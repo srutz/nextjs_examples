@@ -6,14 +6,12 @@ import classes from "./ImageGallery.module.css"
 
 
 const wrap = (length: number, i: number) => {
-    console.log("wrap " + i + " to " + length)
     while (i < 0) {
         i += length
     }
     while (i >= length) {
         i -= length
     }
-    console.log("  => " + i)
     return i
 }
 
