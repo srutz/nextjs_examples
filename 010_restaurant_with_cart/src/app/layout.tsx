@@ -37,7 +37,7 @@ export default function RootLayout(props: RootLayoutProps) {
                             <div className="grow"></div>
                             <CartIcon></CartIcon>
                         </nav>
-                        <div>{props.children}</div>
+                        <div className="column-container grow height1 scroll">{props.children}</div>
                     </div>
                 </CartProvider>      
             </body>
