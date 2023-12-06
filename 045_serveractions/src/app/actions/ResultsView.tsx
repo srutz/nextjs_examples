@@ -12,6 +12,7 @@ export type ResultsViewProps = {
 export function ResultsView(props: ResultsViewProps) {
 
     const { initialResult = { rows:[], fields:[] } } = props
+    console.log("rendering resultsview ...")
 
     const [result, setResult] = useState(initialResult)
     const [loading, setLoading] = useState(false)  // or use useTransition
@@ -27,8 +28,11 @@ export function ResultsView(props: ResultsViewProps) {
     }
 
     const onClickRow = async (row: any) => {
-        console.log("browser log")
+        console.log("browser log onClickRow")
+        // argumente serialisiert
+        // netzwerk aufruf
         await changeSalary(row.id, 5)
+        // rückgabewert de-serialisiert
         refreshData()
     }
 

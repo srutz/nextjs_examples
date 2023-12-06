@@ -6,13 +6,18 @@ export type MyState = {
     visible: boolean,
     currentTime: string,
 }
+
+
 export type BoxProps = {
     title: string,
     children: ReactNode
 }
+
 export const Box = (props: BoxProps) => {
     console.log("rendering box")
-    const { title, children}  = props
+    //const { title, children }  = props
+    const title = props.title
+    const children = props.children
     const onClick = () => {
         //myState.visible = !myState.visible
         const newState = { ...myState }

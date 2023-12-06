@@ -23,19 +23,7 @@ function App() {
         <div className="column-container aligncenter grow">
             <h1>Simple React App</h1>
             <div className="grow height1 scroll">
-                <Box extraNice title="Schöne Grüße" >
-                    <TableView
-                        columns={[
-                            {key: "movie", title: "Film"},
-                            {key: "rating", title: "Note"},
-                        ]}
-                        data={[
-                            {movie: "Star Wars 1, A new hope", rating: 3},
-                            {movie: "Star Wars 2, Empire Strikes Back", rating: 1},
-                            {movie: "Star Wars 3, Return of the Jedi", rating: 4},
-                        ]}
-                    ></TableView>
-                </Box>
+                <Box title="Schöne Grüße" ></Box>
             </div>
             <Spacer height="10"></Spacer>
         </div>

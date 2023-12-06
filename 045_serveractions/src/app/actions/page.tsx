@@ -19,7 +19,6 @@ export default async function Page() {
     const result = await getEmployees()
     const dt = new Date().getTime() - t0;
     console.log("server data fetch tool: " + dt + " ms")
-
     return (
         <PageContainer>
             <div className="column-container">

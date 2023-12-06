@@ -2,7 +2,6 @@
 
 import { PoolManager, SimpleQueryResult } from '@/components/PoolManager'
 
-
 async function waiter(ms: number) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -13,15 +12,15 @@ async function waiter(ms: number) {
 
 
 export async function changeSalary(employeeId: number, increase: number) {        
-    console.log("server log")
+    console.log("server log changeSalary")
 
     const pool = PoolManager.getPool()
 
     const client = await pool.connect()
     try {
-        console.log(employeeId, increase)
+        //console.log(employeeId, increase)
         const res = await pool.query("update employee set salary = salary + $1 where id = $2", [ increase, employeeId ])
-        console.log("performed update: " + res.rowCount)
+        //console.log("performed update: " + res.rowCount)
     } finally {
         client.release()
     }
@@ -31,7 +30,7 @@ export async function getEmployees() {
     const pool = PoolManager.getPool()
     const client = await pool.connect()
     //await waiter(5000)
-
+    console.log("getEmployees ...")
     try {
         const res = await pool.query('select id, name, salary from employee order by id limit 5', [])
         //console.dir(res.rows)
