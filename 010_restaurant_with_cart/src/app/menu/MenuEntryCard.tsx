@@ -49,7 +49,7 @@ export default function MenuEntryCard(props: MenuEntryProps) {
             </div>
             <div className={classes["menuentry-description"]}>{entry.description}</div>
             <div className={classes["menuentry-price"]}>Preis: {formatPrice(entry.price)} €
-                <button onClick={(e) => onClickAdd(e)}>Add to cart</button></div>
+                <button onClick={(e) => onClickAdd}>Add to cart</button></div>
         </div>
     )
 }
