@@ -1,4 +1,4 @@
-import {ReactNode, MouseEvent} from "react";
+import {ReactNode, MouseEvent, useState} from "react";
 
 export type BoxProps = {
     title: string,
@@ -10,15 +10,21 @@ export const Box = (props: BoxProps) => {
 
     const onClick = (event: MouseEvent<HTMLButtonElement>) => {
         console.log("button was clicked " + event.nativeEvent.offsetX)
+        setVisible(!visible)
     }
+
+    const [ visible, setVisible ] = useState<boolean>()
 
     return (
         <fieldset>
             <legend>{title}</legend>
             <button onClick={onClick}>Show/Hide</button>
-            <div>
-                {children}
-            </div>
+            { visible ? (
+                <div>
+                    {children}
+                </div>
+                ) : null
+            }
         </fieldset>
     )
 }
