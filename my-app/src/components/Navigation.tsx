@@ -8,6 +8,7 @@ export function Navigation() {
     return (
         <nav>
             <Link href="/" className={path == "/" ? "active" : ""}>Home</Link>
+            <Link href="/posts" className={path == "/posts" ? "active" : ""}>Posts</Link>
             <Link href="/imprint" className={path == "/imprint" ? "active" : ""}>Imprint</Link>
             <Link href="/contact" className={path == "/contact" ? "active" : ""}>Kontakt</Link>
             <Link href="/about" className={path == "/about" ? "active" : ""}>About</Link>

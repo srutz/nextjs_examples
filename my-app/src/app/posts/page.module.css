@@ -1,0 +1,15 @@
+.postpanel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.post {
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+}
+
+.post:hover {
+    color: orange;    
+}

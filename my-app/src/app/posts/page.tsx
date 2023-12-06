@@ -1,5 +1,7 @@
+
 "use client"
 
+import classes from "./page.module.css"
 import {useEffect,useState} from "react";
 
 
@@ -11,7 +13,8 @@ type Post = {
 type Posts = {
     posts: Post[]
 }
-export function Posts() {
+
+export default function Page() {
 
     const [ posts, setPosts ] = useState<Post[]>([])
 
@@ -25,12 +28,12 @@ export function Posts() {
     }, [])
 
     return (
-        <>
+        <div className={classes.postpanel}>
         {
             posts?.map(post => (
-                <div key={post.id}>- {post.title}</div>
+                <div key={post.id} className={classes.post}>{post.title}</div>
             ))
         }
-        </>
+        </div>
     )
 }
