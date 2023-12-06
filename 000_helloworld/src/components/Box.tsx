@@ -14,6 +14,11 @@ export const Box = (props: BoxProps) => {
     console.log("rendering box")
     const { title, children}  = props
     const onClick = () => {
+        //myState.visible = !myState.visible
+        const newState = { ...myState }
+        newState.visible = !myState.visible
+        newState.currentTime = new Date().toTimeString()
+        setMyState(newState)
     }
     const [ myState, setMyState ] = useState<MyState>({
         visible: true,
