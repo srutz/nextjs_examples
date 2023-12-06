@@ -4,14 +4,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 export function Navigation() {
-    const pathname = usePathname()
+    const path = usePathname()
     return (
         <nav>
-            <Link href="/">Home</Link>
-            <Link href="/imprint">Imprint</Link>
-            <Link href="/contact">Kontakt</Link>
-            <Link href="/about">About</Link>
+            <Link href="/" className={path == "/" ? "active" : ""}>Home</Link>
+            <Link href="/imprint" className={path == "/imprint" ? "active" : ""}>Imprint</Link>
+            <Link href="/contact" className={path == "/contact" ? "active" : ""}>Kontakt</Link>
+            <Link href="/about" className={path == "/about" ? "active" : ""}>About</Link>
         </nav>
-
     )
 }
