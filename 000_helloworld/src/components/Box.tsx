@@ -1,5 +1,11 @@
-import {ReactNode, MouseEvent, useState} from "react";
+import {ReactNode, MouseEvent, useState, CSSProperties} from "react";
+import classes from "./Box.module.css"
 
+
+export type MyState = {
+    visible: boolean,
+    currentTime: string,
+}
 export type BoxProps = {
     title: string,
     children: ReactNode
@@ -7,19 +13,22 @@ export type BoxProps = {
 export const Box = (props: BoxProps) => {
     console.log("rendering box")
     const { title, children}  = props
-
-    const onClick = (event: MouseEvent<HTMLButtonElement>) => {
-        console.log("button was clicked " + event.nativeEvent.offsetX)
-        setVisible(!visible)
+    const onClick = () => {
     }
+    const [ myState, setMyState ] = useState<MyState>({
+        visible: true,
+        currentTime: new Date().toTimeString(),
+    })
 
-    const [ visible, setVisible ] = useState<boolean>()
-
+    const styles: CSSProperties = {
+        width: "600px",
+        height: "200px",
+    }
     return (
-        <fieldset>
-            <legend>{title}</legend>
-            <button onClick={onClick}>Show/Hide</button>
-            { visible ? (
+        <fieldset style={ styles }>
+            <legend>{title} {myState.currentTime}</legend>
+            <button className={classes.button} onClick={onClick}>Show/Hide</button>
+            { myState.visible ? (
                 <div>
                     {children}
                 </div>
