@@ -1,16 +1,21 @@
-import {ReactNode} from "react";
+import {ReactNode, MouseEvent} from "react";
 
 export type BoxProps = {
     title: string,
-    extraNice?: boolean
     children: ReactNode
 }
-export function Box(props: BoxProps) {
-    const { title, extraNice, children}  = props
+export const Box = (props: BoxProps) => {
+    console.log("rendering box")
+    const { title, children}  = props
+
+    const onClick = (event: MouseEvent<HTMLButtonElement>) => {
+        console.log("button was clicked " + event.nativeEvent.offsetX)
+    }
+
     return (
         <fieldset>
             <legend>{title}</legend>
-            { extraNice ? (<div>Du siehst heute morgen gut aus</div>) : null}
+            <button onClick={onClick}>Show/Hide</button>
             <div>
                 {children}
             </div>
