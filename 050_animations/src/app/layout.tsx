@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fira_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar"
+import {ApplicationContextProvider} from "@/components/ApplicationInfoProvider";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -27,10 +28,12 @@ export default function RootLayout(props: RootLayoutProps) {
     return (
         <html lang="de" className={inter.className}>
             <body >
-                <div className="column-container grow height1">
-                    <Navbar></Navbar>
-                    <div className="main-content">{props.children}</div>
-                </div>
+                <ApplicationContextProvider>
+                    <div className="column-container grow height1">
+                        <Navbar></Navbar>
+                        <div className="main-content">{props.children}</div>
+                    </div>
+                </ApplicationContextProvider>
             </body>
         </html>
     )
