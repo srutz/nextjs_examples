@@ -514,13 +514,17 @@ Das Testframework JEST zu einer bestehenden Next.js Anwendung hinzufügen funkti
 
 - Dev-Dependencies hinzufügen
 ```
-npm install --save-dev @testing-library/jest-dom @testing-library/react \
-  @testing-library/user-event @types/jest jest jest-environment-jsdom
+npm install --save-dev @testing-library/jest-dom \
+  @testing-library/react \
+  @testing-library/user-event \
+  @types/jest jest jest-environment-jsdom
 ```
 
 - Jest Config files anlegen
 
-jest.config.ts
+# jest.config.ts
+
+Inhalt von jest.config.ts im Project-root 
 ```
 const nextJest = require('next/jest')
 const createJestConfig = nextJest({
@@ -533,13 +537,19 @@ const customJestConfig = {
 module.exports = createJestConfig(customJestConfig)
 ```
 
-jest.setupjs
+# jest.setup.is
+
+Inhalt von jest.setup.js im Project root
 ```
 import '@testing-library/jest-dom'
 ```
 
 und danach Test files anlegen inkl. JSX.
-Als Tests werden folgende Files erkannt: *.test.js, *.test.jsx, *.test.ts, *.test.tsx
+Als Tests werden folgende Files erkannt: 
+
+-  *.test.js, *.test.jsx, *.test.ts, *.test.tsx
+
+# Ausführen von Tests
 
 Die Tests ausführen mit
 
@@ -547,22 +557,22 @@ Die Tests ausführen mit
 npx jest
 ```
 
-Ein Beispiel Test hier:
+# Beispiel Test mit JSX:
+
 
 ```
 import '@testing-library/jest-dom'
-import {cleanup, fireEvent, render, screen} from '@testing-library/react';
+import {cleanup, fireEvent, render, screen}
+  from '@testing-library/react';
 import MenuEntryCard from "@/app/menu/MenuEntryCard";
 import {MenuEntry} from "@/data/menuentry";
 import {CartProvider} from "@/components/CartProvider";
 
 test("reacttest", () => {
     const entry: MenuEntry = {
-        key: "one",
-        description: "hello",
-        label: "huhu",
-        price: 100,
-        image: "abc.jpg"
+        key: "one", description: "hello",
+        label: "huhu", 
+        price: 100, image: "abc.jpg"
     }
     render(
         <CartProvider>
