@@ -248,6 +248,135 @@ npx next telemetry disable
 - Bilder einbinden
 - APIs mittels route.ts
 
+
+# Workshop 
+
+# Step1: 
+
+- Anwendung leeren
+  - Löschen der Grafiken aus public/
+  - Löschen des Inhaltes von page.tsx und ersetzen durch
+    einfaches Headertag (oder ähnlich)
+  - page.module.css löschen
+  - Löschen des Inhalts von global.css
+- Stand: Branch: 01_empty_everything
+
+
+# Step2:
+  - Ersetzen des Inhalts von  global.css durch 
+```
+https://static.stepanrutz.com/nextjs/global.css
+```
+    und von Layout.tsx durch
+```
+https://static.stepanrutz.com/nextjs/layout.tsx
+```
+
+- Metadata anpassen
+- Stand: Branch: 02_simple_layout
+
+# Step3:
+  - Weitere Routen anlegen
+  ```
+  src/app/imprint/page.tsx
+  src/app/contact/page.tsx
+  src/app/about/page.tsx
+  ```
+  - Links einbauen in Client-Side Component
+    Dazu die <nav> durch eine eigene <Navigation> Componente ersetzen
+    und dort Links einbauen. 
+ - Stand: branch: 03_links
+
+# Step4:
+- Aktive Links mit einer extra Klasse versehen und diese anders
+   rendern. 
+ -   Mittels\
+    ```
+    const pathname = usePathname()
+    ```
+    auf den aktuellen Pfad zugreifen und ggf. eine andere Klasse setzen.\
+- Stand: branch: 04_links_with_style
+
+
+# Step5:
+   Middleware hinzufügen. Diese ist für 
+   - Redirects
+   - Loggin
+   - Authentifizierungen
+
+   Neue Datei middleware.ts
+
+ - Stand: branch: 05_middleware
+
+# Step6:
+Das Tag
+```
+<Image>
+``` 
+benutzen ...\
+Achtung: Das ist kompliziert. Einbinden von Image und ImageWrapper
+
+- Stand: branch: 06_image
+
+# Step7:
+- Fonts.
+- Öffnen der Datei 
+```
+next/dist/compiled/@next/font/dist/google
+```
+   und einfach Font auswählen und importieren.\
+   In Layout.tsx konfigurieren und aktivieren
+
+- Stand: branch: 07_font
+
+# Step8:
+- Plugins installieren. \
+   Install mit npm install \
+
+   und einbinden in einer beliebigen (Client-)-Komponente \
+
+-   Stand: branch: 08_youtube
+
+# Step9:
+- Posts von dummyjson.com laden
+- Neue Route /posts definieren in <Navigation>
+- Ggf. Routen deklarativ rendern
+- Die neue Route lädt die Posts clientseitig
+- Layout für diese Route in page.module.css definieren
+
+- Stand: branch: 09_posts
+
+# Step10:
+- Dynamic Routes
+- Anlegen einer client-Component für einzelne Posts
+
+- Links zu den einzelnen Posts hinzufügen.
+- Dynamische Route anlegen /posts/[id]
+- Style für die neue Post-Komponente
+- Post-Typedefinition in eigene Datei
+- In der dynamischen Route die neue <Post> Komponente aufrufen
+- (Aufs Caching eingehen)
+
+- Stand: 10_dynamic_routes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
 # Workshop 2 (continued), Next.js
 
 
@@ -299,15 +428,151 @@ Styles inkludieren:
 Und je nach Komponente eine Client-Boundary schaffen (```"use client"```)
 
 
+# Workshop 3, Step 1
+
+## Standard Next.js Projekt leeren
+
+- Start with Default next.js App (Typescript, ESLint, App Router, Src Directory, Default Alias). Skip Tailwind
+- Empty globals.css, replace with contents from https://static.stepanrutz.com/nextjs/global.css
+- Empty page.tsx, add some small defaults
+- Delete page.module.css
+- Replace contents of layout.tsx with https://static.stepanrutz.com/nextjs/layout.tsx
+- Delete SVG images in public/
+
+- Branch for above:  01_empty_nextjs
+
+
+# Workshop 3, Step 2
+
+##Carbon hinzufügen
+
+- Install deps
+```
+npm i --save-dev sass\n
+npm i -S @carbon/react
+```
+- Rename globals.css to globals.scss and change import in layout.tsx
+
+- Branch for above:  02_dependencies
+
+# Workshop 3, Step 3
+
+## Carbon Navbar implementieren
+
+- Style für "nav" Element löschen
+- Top-Margin von 48px für das "main" Element setzen
+- Compile error in ./node_modules/@carbon/icons-react/es/generated/bucket-8.js
+- Neue Route  /imprint  anlegen (neues File src/app/imprint/page.tsx)
+- Narbar.tsx anlegen und in layout.tsx einbinden anstelle von altem <nav>
+
+- Branch for above:  03_carbon_navbar
+
+# Workshop 3, Step 4
+
+## Carbon Datatable
+
+- Neue page /datatable anlegen und in der Navbar verlinken
+- Style für die neue Page definiere mit overflow-y: auto;
+- Code aus
+
+```
+https://react.carbondesignsystem.com/?path=/story/components-datatable-toolbar--default
+```
+einfügen.
+
+Rows und Headers wie folgt:
+
+```
+const headers = [ { header: 'Name', key: 'name', },
+ { header: 'Age', key: 'age', },
+ { header: 'Location', key: 'location', }, ];
+ 
+const templateRow = { id: '_', name: 'John Doe', age: 30, location: 'New York' }
+const rows: typeof templateRow[] = []
+rows.push(row)
+```
+
+
+
+
+
+
+
+
+
 # Workshop 4, Next.js
 
 - APIs mittels route.ts (revisited)
 - Serverside Rendering
 - Serverside Datafetching
 - Markdown
+- Testing
 
+# How to add Jest
 
+Das Testframework JEST zu einer bestehenden Next.js Anwendung hinzufügen funktioniert wie folgt:
 
+- Dev-Dependencies hinzufügen
+```
+npm install --save-dev @testing-library/jest-dom @testing-library/react \
+  @testing-library/user-event @types/jest jest jest-environment-jsdom
+```
+
+- Jest Config files anlegen
+
+jest.config.ts
+```
+const nextJest = require('next/jest')
+const createJestConfig = nextJest({
+  dir: './',
+})
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testEnvironment: 'jest-environment-jsdom',
+}
+module.exports = createJestConfig(customJestConfig)
+```
+
+jest.setupjs
+```
+import '@testing-library/jest-dom'
+```
+
+und danach Test files anlegen inkl. JSX.
+Als Tests werden folgende Files erkannt: *.test.js, *.test.jsx, *.test.ts, *.test.tsx
+
+Die Tests ausführen mit
+
+```
+npx jest
+```
+
+Ein Beispiel Test hier:
+
+```
+import '@testing-library/jest-dom'
+import {cleanup, fireEvent, render, screen} from '@testing-library/react';
+import MenuEntryCard from "@/app/menu/MenuEntryCard";
+import {MenuEntry} from "@/data/menuentry";
+import {CartProvider} from "@/components/CartProvider";
+
+test("reacttest", () => {
+    const entry: MenuEntry = {
+        key: "one",
+        description: "hello",
+        label: "huhu",
+        price: 100,
+        image: "abc.jpg"
+    }
+    render(
+        <CartProvider>
+            <MenuEntryCard entry={entry} fadeInDelay={100} />
+        </CartProvider>
+    )
+    const element = screen.getByText('hello')
+    expect(element).toBeInTheDocument()
+})
+```
 
 
 

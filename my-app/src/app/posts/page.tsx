@@ -2,13 +2,11 @@
 "use client"
 
 import classes from "./page.module.css"
-import {useEffect,useState} from "react";
+import {CSSProperties, useEffect, useState} from "react";
+import Link from "next/link";
+import {Post} from "@/components/post";
 
 
-type Post = {
-    id: number;
-    title: string;
-}
 
 type Posts = {
     posts: Post[]
@@ -27,11 +25,14 @@ export default function Page() {
         loader()
     }, [])
 
+
     return (
         <div className={classes.postpanel}>
         {
             posts?.map(post => (
-                <div key={post.id} className={classes.post}>{post.title}</div>
+                <Link key={post.id} href={"/posts/" + post.id}>
+                    <div className={classes.post}>{post.title}</div>
+                </Link>
             ))
         }
         </div>
